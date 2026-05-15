@@ -489,6 +489,28 @@
     grid-template-columns: 1fr 2fr;
     gap: 64px;
   }
+  .about-heading {
+    position: relative;
+    min-height: 520px;
+  }
+  .about-heading::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 380px;
+    background-image: url("assets/camera.png");
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: contain;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .about-heading h2 {
+    position: relative;
+    z-index: 1;
+  }
   .about h2 {
     font-family: var(--chicago);
     font-size: 36px;
@@ -1012,7 +1034,7 @@
 
     <section class="about" id="about">
       <div class="container about-grid">
-        <div>
+        <div class="about-heading">
           <h2>Our<br>garage.</h2>
         </div>
         <div class="about-body">
@@ -1045,14 +1067,14 @@
                 <p>Everyone in the room. Pitchers present their ideas with a number and an image. Joiners listen and pick a team.</p>
               </div>
               <div class="event">
-                <span class="time">10:00 – 12:00</span>
+                <span class="time">10:00 – 10:30</span>
                 <h4>Team formation</h4>
-                <p>Teams settle in and fill out the hypothesis card together — problem, idea, how we'll validate, what success looks like.</p>
+                <p>Teams settle in and fill out the experiment card together — what are you trying to solve, the idea, how you'll test it, what success looks like.</p>
               </div>
               <div class="event warn">
                 <span class="time">⏰ 12:00 deadline</span>
-                <h4>Hypothesis cards in</h4>
-                <p>Every team submits their hypothesis card to the organisers before hacking starts.</p>
+                <h4>Experiment cards in</h4>
+                <p>Every team submits their experiment card to the organisers before hacking starts.</p>
               </div>
               <div class="event">
                 <span class="time">12:00 – 17:30</span>
@@ -1070,9 +1092,9 @@
                 <p>Catered. Casual. Team bonding over food. Some folks head home after — no pressure.</p>
               </div>
               <div class="event">
-                <span class="time">After dinner</span>
-                <h4>Late night hack ☕</h4>
-                <p>Optional. Coffee brewing, workspace open. For the level-4 sign-ups who want to push the final stretch.</p>
+                <span class="time">After dinner – 24:00</span>
+                <h4>Late night hack ☕ (optional)</h4>
+                <p>Totally optional — but if you catch the building bug, the workspace stays open until midnight. Snacks, coffee, and quiet focus for anyone who wants to push the final stretch.</p>
               </div>
             </div>
           </div>
@@ -1087,12 +1109,12 @@
                 <p>Come in late if you stayed late — no judgement. Breakfast on the table, reconnect with the team, review where you left off.</p>
               </div>
               <div class="event warn">
-                <span class="time">⏰ 10:00 deadline</span>
+                <span class="time">⏰ 11:00 deadline</span>
                 <h4>Deliver your code</h4>
                 <p>Code and prototype submitted. Final bug fixes and cleanup land before this point.</p>
               </div>
               <div class="event warn">
-                <span class="time">⏰ 13:00 deadline</span>
+                <span class="time">⏰ 14:00 deadline</span>
                 <h4>Presentations locked</h4>
                 <p>Final decks and demos delivered to the common platform. No editing after this — what you submit is what you present.</p>
               </div>
@@ -1145,31 +1167,48 @@
         <div class="qa-list">
           <details class="qa-item" open>
             <summary>Who can join the hackathon? <span class="plus"></span></summary>
-            <div class="answer">Anyone at e-conomic — product, design, engineering, marketing, support, finance. The room in Christianshavn didn't have job titles either. Cross-functional teams tend to make the most interesting things, so don't wait for "your people" to sign up first.</div>
-          </details>
-          <details class="qa-item">
-            <summary>Do I need to come with an idea? <span class="plus"></span></summary>
-            <div class="answer">No. We'll run an idea-pitching session at the morning kickoff. Bring a half-formed thought, a frustration, or nothing at all — you'll find a team by lunch.</div>
+            <div class="answer">Everyone at e-conomic — product, sales, WOW, finance, reach, and everyone in between. No exceptions, no job title required.</div>
           </details>
           <details class="qa-item">
             <summary>How big are teams? <span class="plus"></span></summary>
-            <div class="answer">Two to five people. Solo entries are allowed but discouraged — the point is to work with someone you wouldn't normally work with.</div>
+            <div class="answer">Up to 5 official team members. You can also have up to 2 helpers — people who might only be available for part of the event or have limited time. Helpers won't be eligible for prizes if the team wins, but their contribution still counts.</div>
           </details>
           <details class="qa-item">
-            <summary>What counts as "shipping"? <span class="plus"></span></summary>
-            <div class="answer">A working prototype people can click through, a real integration, a usable internal tool, a video of a physical thing — anything tangible. Slide decks alone don't count. Show the thing.</div>
+            <summary>Do I need a team or idea before I show up? <span class="plus"></span></summary>
+            <div class="answer">Sign up with your role and we'll help form teams so everyone gets the support they need. Not sure you know enough people? Come with your good idea — we've got your back to get some incredible people around you to make it possible. Not to mention our favourite new little buddy, Claude.</div>
+          </details>
+          <details class="qa-item">
+            <summary>How do we submit our work? <span class="plus"></span></summary>
+            <div class="answer">See how far you can get it. Each team will have developers to help with the technical side, plus access to Claude throughout the day. Technical submission is locked at the 11:00 deadline. You can keep working on your presentation until the 14:00 presentation deadline. Feel free to add any additional resources to support your pitch.</div>
           </details>
           <details class="qa-item">
             <summary>Are there prizes? <span class="plus"></span></summary>
-            <div class="answer">Yes — categories include Most Useful, Most Surprising, Best Craft, and a People's Choice vote. Prizes are deliberately silly. The real prize is bragging rights and possibly your project shipping for real.</div>
-          </details>
-          <details class="qa-item">
-            <summary>What if I can't code? <span class="plus"></span></summary>
-            <div class="answer">Great. We need researchers, writers, designers, and people who can wrangle stakeholders. Some of the strongest past projects were carried by non-engineers who kept the team focused.</div>
+            <div class="answer">We build for the joy of creating something cool in a short amount of time. There will be juries and prizes — details announced on the day. Internal judges who genuinely can't wait to see what you come up with.</div>
           </details>
           <details class="qa-item">
             <summary>Can I use AI tools? <span class="plus"></span></summary>
-            <div class="answer">Please do. Claude, Cursor, v0, Figma Make — all fair game. We care about the outcome and the craft of taste, not which keys you pressed.</div>
+            <div class="answer">Please do — we are amplified by AI. Something our friends in the 1980s would have loved to have. Go nuts, experiment, try something new, push the boundaries. This is an amazing playground to create, experiment, and test. Don't hold back.</div>
+          </details>
+          <details class="qa-item">
+            <summary>What if I'm not a developer? <span class="plus"></span></summary>
+            <div class="answer">Everyone has a good idea. A project can be many things — an AI workflow for your team, a new feature for a customer, a rethink of an existing page, embedded AI functionality. Maybe this is finally the year someone vibe codes a brand new design and layout. How many years have we been trying to make that happen at hackathon?</div>
+          </details>
+          <details class="qa-item">
+            <summary>What if I have an idea but I'm nervous about pitching? <span class="plus"></span></summary>
+            <div class="answer">Sign up and reach out — we can partner you with a product person so you can pitch together. If you want to learn how to build a great 2-minute pitch (that's all you get), sign up and we'll invite you to a How to Pitch session in August. We are here to support you. Let us know what makes you nervous and we'll find a cool way to work through it.</div>
+          </details>
+          <details class="qa-item">
+            <summary>Do I need to stay until midnight to take part? <span class="plus"></span></summary>
+            <div class="answer">
+              <p>Not at all. We want to make space for everyone to join — this is about collaboration, learning, meeting new people, and having fun. There are lots of ways to be in it, and none of them require burning the midnight oil.</p>
+              <p>Deadlines have moved to 11:00 the next morning, so you choose your own adventure:</p>
+              <ul>
+                <li><strong>Working hours only</strong> — build hard during the day and clock out guilt-free.</li>
+                <li><strong>Working hours + some remote time</strong> — sneak in a few extra hours after the kids are asleep.</li>
+                <li><strong>Working hours + dinner</strong> — stay for food and good vibes until 18:00.</li>
+                <li><strong>Working hours + dinner + late night</strong> — brew the coffee, stay late, and see what happens when the building goes quiet.</li>
+              </ul>
+            </div>
           </details>
         </div>
       </div>
