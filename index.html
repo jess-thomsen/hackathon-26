@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hackathon 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=VT323&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/chicago" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF4F0;
+    --ink: #1C1C1C;
+    --ink-soft: #595959;
+    --beige: #DFCCC2;
+    --beige-dark: #93715D;
+    --rule: #1C1C1C;
+    --navy: #29283E;
+    --green: #08AE87;
+    --yellow: #FFBD3B;
+    --orange: #F99702;
+    --red: #CE3F42;
+    --blue: #4573D2;
+    --pink: #CF49AA;
+    --purple: #6542D1;
+    --chicago: "ChicagoFLF", "Chicago", "VT323", ui-monospace, monospace;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Subtle dithered background — very 90s but kept faint */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 4px 4px;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== Top bar ===== */
+  .topbar {
+    border-bottom: 2px solid var(--rule);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+  }
+  .brand {
+    font-family: var(--chicago);
+    font-size: 22px;
+    letter-spacing: 0.5px;
+  }
+  .brand .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: var(--red);
+    margin: 0 8px 2px 0;
+    vertical-align: middle;
+  }
+  .nav {
+    display: flex;
+    gap: 28px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .nav a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* ===== Rainbow stripe (Polaroid) ===== */
+  .stripe {
+    display: flex;
+    height: 6px;
+  }
+  .stripe div { flex: 1; }
+  .stripe .s1 { background: var(--green); }
+  .stripe .s2 { background: var(--yellow); }
+  .stripe .s3 { background: var(--orange); }
+  .stripe .s4 { background: var(--red); }
+  .stripe .s5 { background: var(--blue); }
+
+  /* ===== Hero ===== */
+  .hero {
+    padding: 72px 0 56px;
+  }
+  .eyebrow {
+    font-family: var(--chicago);
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 20px;
+    display: inline-block;
+    border: 2px solid var(--ink);
+    padding: 4px 10px;
+    background: var(--yellow);
+  }
+  h1.headline {
+    font-family: var(--chicago);
+    font-weight: 400;
+    font-size: clamp(48px, 8vw, 104px);
+    line-height: 0.95;
+    letter-spacing: -0.5px;
+    margin: 0 0 24px;
+  }
+  h1.headline em {
+    font-style: normal;
+    background: linear-gradient(180deg, transparent 60%, var(--orange) 60%);
+    padding: 0 6px;
+  }
+  .lede {
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin: 0 0 32px;
+  }
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: var(--chicago);
+    font-size: 15px;
+    padding: 12px 22px;
+    border: 2px solid var(--ink);
+    background: var(--ink);
+    color: var(--bg);
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+  }
+  .btn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+  .btn.secondary {
+    background: var(--bg);
+    color: var(--ink);
+  }
+
+  /* ===== Paint Window (Hero centerpiece) ===== */
+  .paint-stage {
+    margin-top: 56px;
+    display: flex;
+    justify-content: center;
+  }
+  .paint-window {
+    background: var(--beige);
+    border: 2px solid var(--ink);
+    box-shadow: 12px 12px 0 var(--ink);
+    padding: 2px;
+    max-width: 720px;
+    width: 100%;
+  }
+  .paint-titlebar {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 6px 10px;
+    font-family: var(--chicago);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .paint-titlebar .dots {
+    display: flex;
+    gap: 6px;
+  }
+  .paint-titlebar .dots span {
+    width: 10px; height: 10px;
+    background: var(--bg);
+    display: inline-block;
+    border-radius: 50%;
+  }
+  .paint-menubar {
+    background: var(--beige);
+    padding: 4px 8px;
+    border-bottom: 1px solid var(--ink);
+    display: flex;
+    gap: 16px;
+    font-family: var(--chicago);
+    font-size: 13px;
+  }
+  .paint-menubar span { cursor: default; }
+  .paint-menubar span:hover { background: var(--ink); color: var(--bg); padding: 0 4px; margin: 0 -4px; }
+
+  .paint-work {
+    display: flex;
+    padding: 8px;
+    gap: 8px;
+  }
+  .toolbox {
+    width: 56px;
+    background: var(--beige);
+    border: 1px solid var(--ink);
+    padding: 4px;
+    display: grid;
+    grid-template-columns: 24px 24px;
+    gap: 2px;
+    align-content: start;
+  }
+  .tool {
+    width: 24px;
+    height: 24px;
+    background: var(--beige);
+    border-top: 1px solid #fff8e0;
+    border-left: 1px solid #fff8e0;
+    border-right: 1px solid #6b5c3a;
+    border-bottom: 1px solid #6b5c3a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+  }
+  .tool svg { display: block; width: 16px; height: 16px; }
+  .tool.active {
+    background: var(--beige-dark);
+    border-top: 1px solid #6b5c3a;
+    border-left: 1px solid #6b5c3a;
+    border-right: 1px solid #fff8e0;
+    border-bottom: 1px solid #fff8e0;
+  }
+
+  .canvas-wrap {
+    flex: 1;
+    background: #6b5c3a;
+    padding: 2px;
+    border: 1px solid var(--ink);
+  }
+  canvas {
+    display: block;
+    background: #ffffff;
+    cursor: crosshair;
+    image-rendering: pixelated;
+    width: 100%;
+    height: auto;
+  }
+
+  .palette-bar {
+    background: var(--beige);
+    border-top: 1px solid var(--ink);
+    padding: 6px 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .current-color {
+    width: 28px; height: 28px;
+    border: 1px solid var(--ink);
+    background: #000;
+  }
+  .palette {
+    display: grid;
+    grid-template-columns: repeat(8, 18px);
+    grid-template-rows: repeat(2, 18px);
+    gap: 2px;
+  }
+  .swatch-btn {
+    width: 18px; height: 18px;
+    border: 1px solid var(--ink);
+    cursor: default;
+  }
+  .status-bar {
+    background: var(--beige);
+    border-top: 1px solid var(--ink);
+    padding: 4px 8px;
+    font-family: var(--chicago);
+    font-size: 12px;
+  }
+
+  .tool[data-stamp] { padding: 2px; }
+  .tool[data-stamp] svg { width: 100%; height: 100%; }
+
+  /* ===== About ===== */
+  .about {
+    padding: 96px 0 120px;
+    border-top: 2px solid var(--ink);
+    margin-top: 80px;
+    background: var(--bg);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 64px;
+  }
+  .about h2 {
+    font-family: var(--chicago);
+    font-size: 36px;
+    font-weight: 400;
+    margin: 0;
+    line-height: 1;
+  }
+  .about-body p {
+    margin: 0 0 18px;
+    font-size: 18px;
+    line-height: 1.65;
+  }
+  .about-body p:first-child::first-letter {
+    font-family: var(--chicago);
+    font-size: 56px;
+    float: left;
+    line-height: 0.9;
+    padding: 4px 8px 0 0;
+  }
+
+  /* ===== Schedule ===== */
+  .schedule {
+    padding: 96px 0;
+    border-top: 2px solid var(--ink);
+  }
+  .schedule-head {
+    margin-bottom: 56px;
+  }
+  .schedule h2 {
+    font-family: var(--chicago);
+    font-size: 36px;
+    font-weight: 400;
+    margin: 0 0 12px;
+    line-height: 1;
+  }
+  .schedule-head p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 18px;
+    max-width: 560px;
+  }
+  .days {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  .day h3 {
+    font-family: var(--chicago);
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0 0 8px;
+    line-height: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .day h3 .day-num {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 4px 10px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+  }
+  .day .day-sub {
+    margin: 0 0 28px;
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+  .timeline {
+    border-left: 2px solid var(--ink);
+    padding-left: 24px;
+    position: relative;
+  }
+  .event {
+    position: relative;
+    padding: 0 0 22px;
+  }
+  .event::before {
+    content: "";
+    position: absolute;
+    left: -31px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    background: var(--bg);
+    border: 2px solid var(--ink);
+  }
+  .event.highlight::before { background: var(--orange); }
+  .event.warn::before { background: var(--red); }
+  .event .time {
+    font-family: var(--chicago);
+    font-size: 14px;
+    background: var(--beige);
+    border: 1px solid var(--ink);
+    padding: 2px 8px;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+  .event.warn .time { background: var(--red); color: #fff; border-color: var(--red); }
+  .event h4 {
+    font-family: var(--chicago);
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0 0 4px;
+    line-height: 1.2;
+  }
+  .event p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 720px) {
+    .days { grid-template-columns: 1fr; gap: 56px; }
+  }
+
+  /* ===== Sign up ===== */
+  .signup {
+    padding: 96px 0;
+    border-top: 2px solid var(--ink);
+    background: var(--bg);
+  }
+  .signup-head {
+    margin-bottom: 48px;
+  }
+  .signup h2 {
+    font-family: var(--chicago);
+    font-size: 36px;
+    font-weight: 400;
+    margin: 0 0 12px;
+    line-height: 1;
+  }
+  .signup-head p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 18px;
+    max-width: 560px;
+  }
+  .signup-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .form-card {
+    background: var(--beige);
+    border: 2px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--ink);
+    padding: 28px 28px 32px;
+    position: relative;
+  }
+  .form-card.alt { background: var(--bg); }
+  .form-card .tag {
+    position: absolute;
+    top: -14px;
+    left: 20px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 4px 10px;
+    font-family: var(--chicago);
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+  .form-card.alt .tag { background: var(--blue); }
+  .form-card h3 {
+    font-family: var(--chicago);
+    font-size: 26px;
+    font-weight: 400;
+    margin: 8px 0 6px;
+    line-height: 1.1;
+  }
+  .form-card .desc {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin: 0 0 20px;
+  }
+  .field {
+    margin-bottom: 14px;
+  }
+  .field label {
+    display: block;
+    font-family: var(--chicago);
+    font-size: 13px;
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+  }
+  .field input,
+  .field textarea,
+  .field select {
+    width: 100%;
+    padding: 10px 12px;
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--ink);
+    background: #fffdf6;
+    border: 2px solid var(--ink);
+    border-radius: 0;
+    outline: none;
+    box-sizing: border-box;
+  }
+  .field textarea {
+    min-height: 88px;
+    resize: vertical;
+    line-height: 1.5;
+  }
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus {
+    background: #fff;
+    box-shadow: 3px 3px 0 var(--ink);
+    transform: translate(-1px, -1px);
+  }
+  .form-card .btn {
+    width: 100%;
+    margin-top: 8px;
+    text-align: center;
+    display: block;
+  }
+  .form-card.alt .btn { background: var(--blue); border-color: var(--blue); color: #fff; box-shadow: 4px 4px 0 var(--ink); }
+  .form-card.alt .btn:hover { box-shadow: 2px 2px 0 var(--ink); }
+  .form-success {
+    display: none;
+    padding: 16px;
+    background: var(--green);
+    color: #fff;
+    font-family: var(--chicago);
+    font-size: 14px;
+    margin-top: 12px;
+    border: 2px solid var(--ink);
+  }
+  .form-success.show { display: block; }
+
+  @media (max-width: 720px) {
+    .signup-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== Q&A ===== */
+  .qa {
+    padding: 96px 0;
+    border-top: 2px solid var(--ink);
+  }
+  .qa-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .qa h2 {
+    font-family: var(--chicago);
+    font-size: 36px;
+    font-weight: 400;
+    margin: 0;
+    line-height: 1;
+  }
+  .qa-head .hint {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .qa-list {
+    border-top: 1px solid var(--ink);
+  }
+  details.qa-item {
+    border-bottom: 1px solid var(--ink);
+    padding: 0;
+  }
+  details.qa-item summary {
+    font-family: var(--chicago);
+    font-size: 20px;
+    padding: 22px 8px 22px 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  details.qa-item summary::-webkit-details-marker { display: none; }
+  details.qa-item summary .plus {
+    font-family: var(--chicago);
+    font-size: 22px;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--ink);
+    background: var(--bg);
+    flex-shrink: 0;
+    transition: background 0.1s;
+  }
+  details[open].qa-item summary .plus {
+    background: var(--orange);
+    color: var(--bg);
+  }
+  details[open].qa-item summary .plus::before { content: "–"; }
+  details:not([open]).qa-item summary .plus::before { content: "+"; }
+  details.qa-item .answer {
+    padding: 0 36px 24px 0;
+    max-width: 720px;
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  details.qa-item:hover summary { background: rgba(0,0,0,0.02); }
+
+  /* ===== Footer ===== */
+  footer {
+    border-top: 2px solid var(--ink);
+    padding: 24px 0;
+    font-family: var(--chicago);
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 720px) {
+    .about-grid { grid-template-columns: 1fr; gap: 24px; }
+    .nav { display: none; }
+    .paint-window { box-shadow: 6px 6px 0 var(--ink); }
+  }
+</style>
+</head>
+<body>
+  <div class="stripe">
+    <div class="s1"></div><div class="s2"></div><div class="s3"></div><div class="s4"></div><div class="s5"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand"><span class="dot"></span>Hackathon '26</div>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#">Schedule</a>
+        <a href="#">Teams</a>
+        <a href="#">Sign up</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="eyebrow">★ May 13–15, 2026</span>
+        <h1 class="headline">Build something<br><em>weird</em> &amp; wonderful.</h1>
+        <p class="lede">Three days. One team. A blank canvas. e-conomic's 2026 hackathon is about making ideas tangible — so we figured the homepage should let you draw one.</p>
+        <div class="cta-row">
+          <a class="btn" href="#">Sign up →</a>
+          <a class="btn secondary" href="#about">Learn more</a>
+        </div>
+
+        <div class="paint-stage">
+          <div class="paint-window">
+            <div class="paint-titlebar">
+              <span>Paintbrush — untitled.bmp</span>
+              <div class="dots"><span></span><span></span><span></span></div>
+            </div>
+            <div class="paint-menubar">
+              <span>File</span><span>Edit</span><span>View</span><span>Options</span><span>Help</span>
+            </div>
+            <div class="paint-work">
+              <div class="toolbox" id="toolbox">
+                <div class="tool active" data-tool="pencil" title="Pencil">
+                  <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <path fill="#000" d="M10 2h2v1h1v1h1v2h-1v1h-1v1H10V7H9V6H8V5h1V4h1V2zM9 7v1H8v1H7v1H6v1H5v1H4v1H3v1H2v-1h1v-1h1v-1h1v-1h1V9h1V8h1V7h1z"/>
+                    <path fill="#000" d="M2 13h2v1H2z"/>
+                  </svg>
+                </div>
+                <div class="tool" data-tool="brush" title="Brush">
+                  <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <path fill="#000" d="M11 2h2v1h1v3h-1v1h-1v1h-1V7h-1V6H9V5h1V4h1V2zM9 7v1H8v1H7v1H6v1H5v1H4v1h1v1H3v-1H2v-1h1v-1h1v-1h1V9h1V8h1V7h1z"/>
+                  </svg>
+                </div>
+                <div class="tool" data-tool="eraser" title="Eraser">
+                  <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <path fill="none" stroke="#000" stroke-width="1" d="M2.5 5.5h11v6h-11z"/>
+                    <path fill="#000" d="M3 6h5v5H3z"/>
+                  </svg>
+                </div>
+                <div class="tool" data-tool="clear" title="Clear All">
+                  <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <path fill="#000" d="M4 2h8v1H4zM3 3h10v1H3zM4 4h1v10H4zM11 4h1v10h-1zM5 5h1v8H5zM10 5h1v8h-1zM6 6h1v7H6zM9 6h1v7H9zM7 7h2v5H7zM3 13h10v1H3z"/>
+                  </svg>
+                </div>
+                <div class="tool" data-tool="upload" title="Send to Drive">
+                  <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <path fill="#000" d="M7 2h2v7h2v1H9v3H7v-3H5V9h2V2zM2 12h12v2H2z"/>
+                  </svg>
+                </div>
+                <div class="tool" data-tool="save" title="Save as PNG">
+                  <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <path fill="#000" d="M2 2h11v1h1v11H2V2zm1 1v10h10V4h-1V3H3zm2 0h6v3H5V3zm1 1v1h1V4H6zm-1 5h7v4H5V9zm1 1v1h1v-1H6zm2 0v1h1v-1H8zm2 0v1h1v-1h-1z"/>
+                  </svg>
+                </div>
+                <div class="tool" data-stamp="logo" title="Stamp: e-conomic">
+                  <svg viewBox="0 0 63.76 63.88" fill="#000"><path d="M7.29,36.59c-3.31-0.66-6.52,1.49-7.18,4.79c-0.66,3.31,1.49,6.52,4.79,7.17c3.31,0.66,6.52-1.49,7.18-4.79C12.75,40.46,10.6,37.24,7.29,36.59z"/><path d="M43.21,43.73c-5.51-1.1-10.86,2.48-11.96,7.99c-1.1,5.51,2.48,10.86,7.99,11.96c5.51,1.1,10.86-2.48,11.96-7.99C52.29,50.18,48.72,44.83,43.21,43.73z"/><path d="M53.94,0.24C47.33-1.08,40.9,3.21,39.58,9.82L38.4,15.8c-0.87,4.41-5.17,7.28-9.58,6.41l-3.99-0.81c-4.39-0.88-7.26-5.15-6.39-9.56l0.2-1c0.75-3.84-1.75-7.61-5.59-8.36C9.18,1.7,5.44,4.21,4.67,8.07c-0.77,3.84,1.75,7.59,5.59,8.36l1,0.2c4.41,0.87,7.28,5.17,6.39,9.56l-0.39,1.99c-0.87,4.41,1.99,8.71,6.39,9.58c4.41,0.88,8.71-1.99,9.58-6.41l0.39-1.99c0.87-4.39,5.17-7.26,9.56-6.39l6,1.2c6.61,1.3,13.04-2.99,14.34-9.6C64.84,7.97,60.55,1.54,53.94,0.24z"/></svg>
+                </div>
+                <div class="tool" data-stamp="pacman" title="Stamp: Pac-Man">
+                  <svg viewBox="0 0 64 64"><path fill="#000" d="M32 32 L56 18 A28 28 0 1 1 56 46 Z"/></svg>
+                </div>
+                <div class="tool" data-stamp="ghost" title="Stamp: Ghost">
+                  <svg viewBox="0 0 64 64"><path fill="#000" d="M10 32 A22 22 0 0 1 54 32 L54 56 L48 50 L42 56 L36 50 L30 56 L24 50 L18 56 L10 50 Z"/><circle cx="24" cy="30" r="4" fill="#FFF"/><circle cx="40" cy="30" r="4" fill="#FFF"/></svg>
+                </div>
+                <div class="tool" data-stamp="cherry" title="Stamp: Cherry">
+                  <svg viewBox="0 0 64 64"><path d="M22 38 Q30 18 40 8" stroke="#000" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M42 38 Q40 18 40 8" stroke="#000" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="22" cy="48" r="10" fill="#000"/><circle cx="42" cy="48" r="10" fill="#000"/><circle cx="19" cy="45" r="2" fill="#FFF"/><circle cx="39" cy="45" r="2" fill="#FFF"/></svg>
+                </div>
+                <div class="tool" data-stamp="cassette" title="Stamp: Cassette">
+                  <svg viewBox="0 0 64 64"><rect x="6" y="14" width="52" height="36" rx="3" fill="none" stroke="#000" stroke-width="3"/><circle cx="22" cy="30" r="5" fill="none" stroke="#000" stroke-width="3"/><circle cx="42" cy="30" r="5" fill="none" stroke="#000" stroke-width="3"/><line x1="14" y1="42" x2="50" y2="42" stroke="#000" stroke-width="3"/></svg>
+                </div>
+              </div>
+              <div class="canvas-wrap">
+                <canvas id="canvas" width="560" height="360"></canvas>
+              </div>
+            </div>
+            <div class="palette-bar">
+              <div class="current-color" id="currentSwatch"></div>
+              <div class="palette" id="palette"></div>
+            </div>
+            <div class="status-bar" id="status">Draw something. The internet is watching.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div>
+          <h2>About<br>the event.</h2>
+        </div>
+        <div class="about-body">
+          <p>Hackathon 2026 is e-conomic's annual three-day sprint where product, design, and engineering team up to ship something real. The brief is intentionally loose: pick a problem you actually care about, find two or three people who care about it too, and see how far you can get by Friday afternoon.</p>
+          <p>We'll have a kickoff Wednesday morning, food and drinks on-site, judges from across the org, and demos on Friday. No slide decks — show us the thing. Whether it ends up in production or not, the goal is the same: prove that a small team with a clear idea can build something surprising in 72 hours.</p>
+          <p>Inspired by the era when computers were beige, fonts were pixelated, and people drew their dreams in MS Paint.</p>
+        </div>
+      </div>
+    </section>
+    <section class="schedule" id="schedule">
+      <div class="container">
+        <div class="schedule-head">
+          <h2>Two days.<br>Here's the shape.</h2>
+          <p>A working rhythm — pitches in the morning, building all afternoon, dinner together, demos on the big stage on day two.</p>
+        </div>
+        <div class="days">
+          <div class="day">
+            <h3><span class="day-num">DAY 1</span> Pitch &amp; build</h3>
+            <p class="day-sub">Ideas land, teams form, the work begins.</p>
+            <div class="timeline">
+              <div class="event highlight">
+                <span class="time">09:00 – 10:00</span>
+                <h4>Opening &amp; pitches</h4>
+                <p>Everyone in the room. Pitchers present their ideas with a number and an image. Joiners listen and pick a team.</p>
+              </div>
+              <div class="event">
+                <span class="time">10:00 – 12:00</span>
+                <h4>Team formation</h4>
+                <p>Teams settle in and fill out the hypothesis card together — problem, idea, how we'll validate, what success looks like.</p>
+              </div>
+              <div class="event warn">
+                <span class="time">⏰ 12:00 deadline</span>
+                <h4>Hypothesis cards in</h4>
+                <p>Every team submits their hypothesis card to the organisers before hacking starts.</p>
+              </div>
+              <div class="event">
+                <span class="time">12:00 – 17:30</span>
+                <h4>Hack time</h4>
+                <p>Lunch together. Snacks throughout. Organisers float between teams for check-ins. Build, design, research, code.</p>
+              </div>
+              <div class="event highlight">
+                <span class="time">17:30</span>
+                <h4>Fun break</h4>
+                <p>Thirty minutes, everyone together. A group activity to recharge and cross-pollinate between teams.</p>
+              </div>
+              <div class="event">
+                <span class="time">18:00</span>
+                <h4>Dinner</h4>
+                <p>Catered. Casual. Team bonding over food. Some folks head home after — no pressure.</p>
+              </div>
+              <div class="event">
+                <span class="time">After dinner</span>
+                <h4>Late night hack ☕</h4>
+                <p>Optional. Coffee brewing, workspace open. For the level-4 sign-ups who want to push the final stretch.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="day">
+            <h3><span class="day-num">DAY 2</span> Ship &amp; show</h3>
+            <p class="day-sub">Wrap the build, lock the deck, take the stage.</p>
+            <div class="timeline">
+              <div class="event">
+                <span class="time">08:30</span>
+                <h4>Arrival &amp; breakfast</h4>
+                <p>Come in late if you stayed late — no judgement. Breakfast on the table, reconnect with the team, review where you left off.</p>
+              </div>
+              <div class="event warn">
+                <span class="time">⏰ 10:00 deadline</span>
+                <h4>Deliver your code</h4>
+                <p>Code and prototype submitted. Final bug fixes and cleanup land before this point.</p>
+              </div>
+              <div class="event warn">
+                <span class="time">⏰ 13:00 deadline</span>
+                <h4>Presentations locked</h4>
+                <p>Final decks and demos delivered to the common platform. No editing after this — what you submit is what you present.</p>
+              </div>
+              <div class="event">
+                <span class="time">12:00 – 15:00</span>
+                <h4>Free time &amp; lunch</h4>
+                <p>Breathe. The hard part is done. Eat together, practice your pitch if you want, get hyped for the afternoon.</p>
+              </div>
+              <div class="event highlight">
+                <span class="time">15:15 – 17:30</span>
+                <h4>Final presentations 🎤</h4>
+                <p>Sharp start at 15:15. Every team takes the stage, demos their work, answers questions. We watch, we cheer, we vote, we celebrate.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="signup" id="signup">
+      <div class="container">
+        <div class="signup-head">
+          <h2>Sign up.</h2>
+          <p>Two ways in — pitch the idea you've been sitting on, or join a team and bring your skills to someone else's.</p>
+        </div>
+        <div class="signup-grid">
+          <div class="form-card">
+            <span class="tag">★ Pitch an idea</span>
+            <h3>I have an idea.</h3>
+            <p class="desc">Tell us what you want to build. You'll pitch it at Wednesday's kickoff and recruit teammates on the spot.</p>
+            <a class="btn" href="https://forms.google.com/REPLACE_WITH_PITCH_FORM_URL" target="_blank" rel="noopener">Submit pitch →</a>
+          </div>
+
+          <div class="form-card alt">
+            <span class="tag">◆ Join a team</span>
+            <h3>I'll bring the skills.</h3>
+            <p class="desc">No idea required. Tell us what you're good at and what excites you — we'll match you up at kickoff.</p>
+            <a class="btn" href="https://forms.google.com/REPLACE_WITH_TEAMMATE_FORM_URL" target="_blank" rel="noopener">Join the pool →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="qa" id="qa">
+      <div class="container">
+        <div class="qa-head">
+          <h2>Questions &amp;<br>Answers.</h2>
+          <span class="hint">Click a question to expand ↓</span>
+        </div>
+        <div class="qa-list">
+          <details class="qa-item" open>
+            <summary>Who can join the hackathon? <span class="plus"></span></summary>
+            <div class="answer">Anyone at e-conomic — product, design, engineering, marketing, support, finance. Cross-functional teams tend to make the most interesting things, so don't wait for "your people" to sign up first.</div>
+          </details>
+          <details class="qa-item">
+            <summary>Do I need to come with an idea? <span class="plus"></span></summary>
+            <div class="answer">No. We'll run an idea-pitching session at kickoff on Wednesday morning. Bring a half-formed thought, a frustration, or nothing at all — you'll find a team by lunch.</div>
+          </details>
+          <details class="qa-item">
+            <summary>How big are teams? <span class="plus"></span></summary>
+            <div class="answer">Two to five people. Solo entries are allowed but discouraged — the point is to work with someone you wouldn't normally work with.</div>
+          </details>
+          <details class="qa-item">
+            <summary>What counts as "shipping"? <span class="plus"></span></summary>
+            <div class="answer">A working prototype people can click through, a real integration, a usable internal tool, a video of a physical thing — anything tangible. Slide decks alone don't count. Show the thing.</div>
+          </details>
+          <details class="qa-item">
+            <summary>Are there prizes? <span class="plus"></span></summary>
+            <div class="answer">Yes — categories include Most Useful, Most Surprising, Best Craft, and a People's Choice vote. Prizes are deliberately silly. The real prize is bragging rights and possibly your project shipping for real.</div>
+          </details>
+          <details class="qa-item">
+            <summary>What if I can't code? <span class="plus"></span></summary>
+            <div class="answer">Great. We need researchers, writers, designers, and people who can wrangle stakeholders. Some of the strongest past projects were carried by non-engineers who kept the team focused.</div>
+          </details>
+          <details class="qa-item">
+            <summary>Can I use AI tools? <span class="plus"></span></summary>
+            <div class="answer">Please do. Claude, Cursor, v0, Figma Make — all fair game. We care about the outcome and the craft of taste, not which keys you pressed.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; width:100%;">
+      <span>© 2026 e-conomic · Hackathon</span>
+      <span>Made with ◆ and beige.</span>
+    </div>
+  </footer>
+
+<script>
+(function () {
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+
+  const backdropImg = new Image();
+  let backdropReady = false;
+  backdropImg.onload = () => { backdropReady = true; drawBackdrop(); };
+  backdropImg.onerror = () => { backdropReady = false; drawBackdrop(); };
+  backdropImg.src = 'assets/hackathon-img.png';
+
+  function drawBackdrop() {
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    if (!backdropReady) return;
+
+    const ar = backdropImg.width / backdropImg.height;
+    const cAr = canvas.width / canvas.height;
+    let w, h;
+    if (ar > cAr) {
+      w = canvas.width * 0.92;
+      h = w / ar;
+    } else {
+      h = canvas.height * 0.95;
+      w = h * ar;
+    }
+    const x = (canvas.width - w) / 2;
+    const y = (canvas.height - h) / 2;
+    ctx.drawImage(backdropImg, x, y, w, h);
+  }
+
+  drawBackdrop();
+
+  const COLORS = [
+    '#1C1C1C','#29283E','#4573D2','#08AE87',
+    '#FFBD3B','#F99702','#CE3F42','#CF49AA',
+    '#FFFFFF','#ACACAC','#AACCFF','#9BE1CE',
+    '#FFE494','#FCCB80','#F3A09D','#FCB9E9'
+  ];
+
+  const palette = document.getElementById('palette');
+  COLORS.forEach(c => {
+    const s = document.createElement('div');
+    s.className = 'swatch-btn';
+    s.style.background = c;
+    s.dataset.color = c;
+    palette.appendChild(s);
+  });
+
+  // ⚠️ Paste your deployed Google Apps Script Web App URL here:
+  const DRIVE_ENDPOINT = "";
+
+  const state = { tool: 'pencil', color: '#000000', drawing: false, lastX: 0, lastY: 0, stamp: null };
+
+  // Stamp definitions (rendered in color when placed on canvas, not B&W like the toolbox icons)
+  const STAMP_SVGS = {
+    logo: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.76 63.88" fill="{{color}}"><path d="M7.29,36.59c-3.31-0.66-6.52,1.49-7.18,4.79c-0.66,3.31,1.49,6.52,4.79,7.17c3.31,0.66,6.52-1.49,7.18-4.79C12.75,40.46,10.6,37.24,7.29,36.59z"/><path d="M43.21,43.73c-5.51-1.1-10.86,2.48-11.96,7.99c-1.1,5.51,2.48,10.86,7.99,11.96c5.51,1.1,10.86-2.48,11.96-7.99C52.29,50.18,48.72,44.83,43.21,43.73z"/><path d="M53.94,0.24C47.33-1.08,40.9,3.21,39.58,9.82L38.4,15.8c-0.87,4.41-5.17,7.28-9.58,6.41l-3.99-0.81c-4.39-0.88-7.26-5.15-6.39-9.56l0.2-1c0.75-3.84-1.75-7.61-5.59-8.36C9.18,1.7,5.44,4.21,4.67,8.07c-0.77,3.84,1.75,7.59,5.59,8.36l1,0.2c4.41,0.87,7.28,5.17,6.39,9.56l-0.39,1.99c-0.87,4.41,1.99,8.71,6.39,9.58c4.41,0.88,8.71-1.99,9.58-6.41l0.39-1.99c0.87-4.39,5.17-7.26,9.56-6.39l6,1.2c6.61,1.3,13.04-2.99,14.34-9.6C64.84,7.97,60.55,1.54,53.94,0.24z"/></svg>',
+    pacman: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path fill="{{color}}" d="M32 32 L56 18 A28 28 0 1 1 56 46 Z"/><circle cx="38" cy="20" r="2.5" fill="#1C1C1C"/></svg>',
+    ghost: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path fill="{{color}}" d="M10 32 A22 22 0 0 1 54 32 L54 56 L48 50 L42 56 L36 50 L30 56 L24 50 L18 56 L10 50 Z"/><circle cx="24" cy="30" r="5" fill="#FFFFFF"/><circle cx="40" cy="30" r="5" fill="#FFFFFF"/><circle cx="25" cy="31" r="2.5" fill="#29283E"/><circle cx="41" cy="31" r="2.5" fill="#29283E"/></svg>',
+    cherry: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path d="M22 38 Q30 18 40 8" stroke="#08AE87" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M42 38 Q40 18 40 8" stroke="#08AE87" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="22" cy="48" r="11" fill="{{color}}"/><circle cx="42" cy="48" r="11" fill="{{color}}"/></svg>',
+    cassette: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="6" y="14" width="52" height="36" rx="3" fill="{{color}}"/><rect x="12" y="22" width="40" height="14" fill="#FFE494"/><circle cx="22" cy="29" r="3.5" fill="#1C1C1C"/><circle cx="42" cy="29" r="3.5" fill="#1C1C1C"/><rect x="10" y="42" width="44" height="3" fill="#FFE494"/></svg>'
+  };
+
+  function placeStamp(x, y) {
+    const tmpl = STAMP_SVGS[state.stamp];
+    if (!tmpl) return;
+    const svgStr = tmpl.replace(/\{\{color\}\}/g, state.color);
+    const img = new Image();
+    img.onload = () => {
+      const size = 64;
+      ctx.drawImage(img, x - size / 2, y - size / 2, size, size);
+    };
+    img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgStr)));
+  }
+
+  async function uploadToDrive() {
+    if (!DRIVE_ENDPOINT) {
+      alert("Google Drive endpoint not configured yet.\n\nSee the README in the project folder for the 5-minute Apps Script setup.");
+      return;
+    }
+    const name = prompt("Sign your masterpiece (your name or alias):", "");
+    if (name === null) return;
+    status.textContent = "Sending to Drive…";
+    try {
+      const dataUrl = canvas.toDataURL('image/png');
+      const res = await fetch(DRIVE_ENDPOINT, {
+        method: 'POST',
+        body: JSON.stringify({
+          filename: (name || 'anonymous').replace(/[^a-z0-9-_ ]/gi, '').trim() || 'anonymous',
+          image: dataUrl
+        }),
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+      });
+      const json = await res.json();
+      if (json.ok) {
+        status.textContent = "✓ Saved to the hackathon gallery!";
+      } else {
+        throw new Error(json.error || 'Upload failed');
+      }
+    } catch (e) {
+      status.textContent = "✗ Upload failed: " + e.message;
+    }
+  }
+  const currentSwatch = document.getElementById('currentSwatch');
+  const status = document.getElementById('status');
+
+  palette.addEventListener('mousedown', (e) => {
+    const t = e.target.closest('.swatch-btn');
+    if (!t) return;
+    state.color = t.dataset.color;
+    currentSwatch.style.background = state.color;
+  });
+
+  const toolbox = document.getElementById('toolbox');
+  toolbox.addEventListener('mousedown', (e) => {
+    const t = e.target.closest('.tool');
+    if (!t) return;
+
+    if (t.dataset.stamp) {
+      state.tool = 'stamp';
+      state.stamp = t.dataset.stamp;
+      [...toolbox.querySelectorAll('.tool')].forEach(el => el.classList.remove('active'));
+      t.classList.add('active');
+      canvas.style.cursor = 'cell';
+      status.textContent = 'Stamp: click canvas to place';
+      return;
+    }
+
+    const tool = t.dataset.tool;
+    if (tool === 'clear') {
+      if (confirm('Erase the entire picture?')) {
+        drawBackdrop();
+      }
+      return;
+    }
+    if (tool === 'save') {
+      const link = document.createElement('a');
+      link.download = 'hackathon-2026.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      return;
+    }
+    if (tool === 'upload') {
+      uploadToDrive();
+      return;
+    }
+    state.tool = tool;
+    state.stamp = null;
+    document.querySelectorAll('.stamp-btn').forEach(b => b.classList.remove('active'));
+    canvas.style.cursor = 'crosshair';
+    [...toolbox.querySelectorAll('.tool')].forEach(el => el.classList.remove('active'));
+    t.classList.add('active');
+    status.textContent = 'Tool: ' + tool;
+  });
+
+  function pos(e) {
+    const r = canvas.getBoundingClientRect();
+    const sx = canvas.width / r.width;
+    const sy = canvas.height / r.height;
+    return {
+      x: Math.floor((e.clientX - r.left) * sx),
+      y: Math.floor((e.clientY - r.top) * sy)
+    };
+  }
+
+  function stroke(x0, y0, x1, y1) {
+    ctx.beginPath();
+    if (state.tool === 'eraser') {
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 14;
+      ctx.lineCap = 'square';
+    } else if (state.tool === 'brush') {
+      ctx.strokeStyle = state.color;
+      ctx.lineWidth = 5;
+      ctx.lineCap = 'round';
+    } else {
+      ctx.strokeStyle = state.color;
+      ctx.lineWidth = 2;
+      ctx.lineCap = 'round';
+    }
+    ctx.moveTo(x0 + 0.5, y0 + 0.5);
+    ctx.lineTo(x1 + 0.5, y1 + 0.5);
+    ctx.stroke();
+  }
+
+  canvas.addEventListener('mousedown', (e) => {
+    const p = pos(e);
+    if (state.tool === 'stamp') {
+      placeStamp(p.x, p.y);
+      return;
+    }
+    state.drawing = true;
+    state.lastX = p.x; state.lastY = p.y;
+    stroke(p.x, p.y, p.x, p.y);
+  });
+  window.addEventListener('mousemove', (e) => {
+    const p = pos(e);
+    if (!state.drawing) return;
+    stroke(state.lastX, state.lastY, p.x, p.y);
+    state.lastX = p.x; state.lastY = p.y;
+  });
+  window.addEventListener('mouseup', () => { state.drawing = false; });
+
+  function wireForm(formId, successId) {
+    const form = document.getElementById(formId);
+    const success = document.getElementById(successId);
+    if (!form) return;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      success.classList.add('show');
+      form.querySelectorAll('input, textarea, select, button').forEach(el => el.disabled = true);
+    });
+  }
+  wireForm('pitchForm', 'pitchSuccess');
+  wireForm('teammateForm', 'teammateSuccess');
+})();
+</script>
+</body>
+</html>
