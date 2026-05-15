@@ -80,14 +80,16 @@
     font-family: var(--chicago);
     font-size: 22px;
     letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--ink);
+    text-decoration: none;
   }
-  .brand .dot {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    background: var(--red);
-    margin: 0 8px 2px 0;
-    vertical-align: middle;
+  .brand-logo {
+    display: block;
+    width: 28px;
+    height: 28px;
   }
   .nav {
     display: flex;
@@ -715,7 +717,10 @@
 
   <header class="topbar">
     <div class="container topbar-inner">
-      <div class="brand"><span class="dot"></span>Hackathon '26</div>
+      <a class="brand" href="#top" aria-label="e-conomic Hackathon '26 home">
+        <img class="brand-logo" src="assets/e-conomic_Primary_logo_Neg_CMYK.svg" alt="e-conomic">
+        <span class="brand-text">Hackathon '26</span>
+      </a>
       <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">☰</button>
       <nav class="nav" id="nav">
         <a href="#about">About</a>
