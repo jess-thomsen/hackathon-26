@@ -74,6 +74,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 14px 0;
+    position: relative;
   }
   .brand {
     font-family: var(--chicago);
@@ -99,6 +100,18 @@
     text-decoration: none;
   }
   .nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .nav-toggle {
+    display: none;
+    background: var(--bg);
+    border: 2px solid var(--ink);
+    font-family: var(--chicago);
+    font-size: 18px;
+    line-height: 1;
+    padding: 6px 10px;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  .nav-toggle:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--ink); }
 
   /* ===== Rainbow stripe (Polaroid) ===== */
   .stripe {
@@ -116,6 +129,17 @@
   .hero {
     padding: 72px 0 56px;
   }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .hero-text { min-width: 0; }
+  .hero-paint { min-width: 0; }
+  @media (max-width: 960px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
   .eyebrow {
     font-family: var(--chicago);
     font-size: 14px;
@@ -131,7 +155,7 @@
   h1.headline {
     font-family: var(--chicago);
     font-weight: 400;
-    font-size: clamp(48px, 8vw, 104px);
+    font-size: clamp(44px, 5.5vw, 84px);
     line-height: 0.95;
     letter-spacing: -0.5px;
     margin: 0 0 24px;
@@ -173,7 +197,6 @@
 
   /* ===== Paint Window (Hero centerpiece) ===== */
   .paint-stage {
-    margin-top: 56px;
     display: flex;
     justify-content: center;
   }
@@ -634,9 +657,54 @@
   }
 
   @media (max-width: 720px) {
-    .about-grid { grid-template-columns: 1fr; gap: 24px; }
-    .nav { display: none; }
+    html, body { font-size: 16px; }
+    .container { padding: 0 20px; }
+    .topbar-inner { padding: 12px 0; }
+    .brand { font-size: 18px; }
+    .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+    .nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 20px;
+      flex-direction: column;
+      gap: 0;
+      background: var(--bg);
+      border: 2px solid var(--ink);
+      box-shadow: 6px 6px 0 var(--ink);
+      padding: 8px 0;
+      min-width: 180px;
+      font-size: 16px;
+    }
+    .nav.open { display: flex; }
+    .nav a { padding: 10px 18px; }
+    .nav a + a { border-top: 1px solid var(--ink); }
+
+    .hero { padding: 40px 0 32px; }
+    h1.headline { font-size: clamp(40px, 11vw, 64px); }
+    .lede { font-size: 17px; }
+    .cta-row .btn { flex: 1; text-align: center; }
     .paint-window { box-shadow: 6px 6px 0 var(--ink); }
+    .toolbox { width: 48px; grid-template-columns: 20px 20px; }
+    .tool { width: 20px; height: 20px; }
+    .tool svg { width: 14px; height: 14px; }
+    .palette { grid-template-columns: repeat(8, 14px); grid-template-rows: repeat(2, 14px); }
+    .swatch-btn { width: 14px; height: 14px; }
+    .current-color { width: 22px; height: 22px; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 24px; }
+    .about { padding: 56px 0 64px; margin-top: 56px; }
+    .about h2, .schedule h2, .signup h2, .qa h2 { font-size: 30px; }
+    .schedule, .signup, .qa { padding: 56px 0; }
+    .schedule-head, .signup-head { margin-bottom: 32px; }
+    .about-body p { font-size: 16px; }
+    .about-body p:first-child::first-letter { font-size: 44px; }
+
+    details.qa-item summary { font-size: 17px; padding: 18px 8px 18px 0; gap: 16px; }
+    details.qa-item .answer { font-size: 15px; padding-right: 16px; }
+
+    footer { flex-direction: column; gap: 8px; padding: 20px 0; font-size: 12px; text-align: center; }
+    footer .container { flex-direction: column; gap: 8px; }
   }
 </style>
 </head>
@@ -648,26 +716,30 @@
   <header class="topbar">
     <div class="container topbar-inner">
       <div class="brand"><span class="dot"></span>Hackathon '26</div>
-      <nav class="nav">
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">☰</button>
+      <nav class="nav" id="nav">
         <a href="#about">About</a>
-        <a href="#">Schedule</a>
-        <a href="#">Teams</a>
-        <a href="#">Sign up</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#signup">Sign up</a>
+        <a href="#qa">Q&amp;A</a>
       </nav>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="container">
-        <span class="eyebrow">★ Hackathon '26 · 25 years of e-conomic</span>
-        <h1 class="headline">Back to the<br><em>garage.</em></h1>
-        <p class="lede">Silicon Valley has the garage. Ours was an old merchant's building in Christianshavn — Wildersgade 51, where a handful of people started this company 25 years ago. Same energy. New superpowers. <strong>0 → 100 in 24 hours.</strong></p>
-        <div class="cta-row">
-          <a class="btn" href="#">Sign up →</a>
-          <a class="btn secondary" href="#about">Learn more</a>
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <span class="eyebrow">★ Hackathon '26 · 25 years of e-conomic</span>
+          <h1 class="headline">Back to the<br><em>garage.</em></h1>
+          <p class="lede">Silicon Valley has the garage. Ours was an old merchant's building in Christianshavn — Wildersgade 51, where a handful of people started this company 25 years ago. Same energy. New superpowers. <strong>0 → 100 in 24 hours.</strong></p>
+          <div class="cta-row">
+            <a class="btn" href="#signup">Sign up →</a>
+            <a class="btn secondary" href="#about">Learn more</a>
+          </div>
         </div>
 
+        <div class="hero-paint">
         <div class="paint-stage">
           <div class="paint-window">
             <div class="paint-titlebar">
@@ -737,6 +809,7 @@
             </div>
             <div class="status-bar" id="status">Draw something. The internet is watching.</div>
           </div>
+        </div>
         </div>
       </div>
     </section>
@@ -1131,6 +1204,21 @@
   }
   wireForm('pitchForm', 'pitchSuccess');
   wireForm('teammateForm', 'teammateSuccess');
+
+  const navToggle = document.getElementById('navToggle');
+  const nav = document.getElementById('nav');
+  if (navToggle && nav) {
+    navToggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        nav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
 })();
 </script>
 </body>
