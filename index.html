@@ -197,6 +197,129 @@
     color: var(--ink);
   }
 
+  /* ===== Countdown Watch (Casio F-91W) ===== */
+  .watch {
+    position: relative;
+    margin-top: 32px;
+    max-width: 380px;
+    background: #F4B81E;
+    background-image:
+      linear-gradient(180deg, rgba(255,255,255,0.18), rgba(0,0,0,0) 30%),
+      linear-gradient(180deg, rgba(0,0,0,0) 70%, rgba(0,0,0,0.15));
+    border: 2px solid var(--ink);
+    border-radius: 22px;
+    padding: 22px 24px 26px;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .watch::before, .watch::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 14px;
+    background: #E0A613;
+    border: 2px solid var(--ink);
+    border-radius: 4px;
+  }
+  .watch::before { top: -10px; }
+  .watch::after { bottom: -10px; }
+  .watch-btn {
+    position: absolute;
+    width: 14px;
+    height: 10px;
+    background: linear-gradient(180deg, #e8e8e8, #9a9a9a);
+    border: 1.5px solid var(--ink);
+    border-radius: 2px;
+  }
+  .watch-btn-tl { left: -10px; top: 22px; }
+  .watch-btn-bl { left: -10px; bottom: 22px; }
+  .watch-btn-tr { right: -10px; top: 22px; }
+  .watch-btn-br { right: -10px; bottom: 22px; }
+
+  .watch-lcd {
+    background: #C7BE82;
+    background-image:
+      linear-gradient(180deg, #BDB375 0%, #D6CC92 40%, #C7BE82 100%);
+    border: 2px solid #6b5c3a;
+    border-radius: 6px;
+    padding: 8px 12px 6px;
+    color: #1C1C1C;
+    font-family: "VT323", ui-monospace, monospace;
+  }
+  .lcd-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    color: #3a3320;
+    margin-bottom: 4px;
+  }
+  .lcd-model {
+    font-weight: 700;
+    font-family: var(--chicago);
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+  .lcd-chrono {
+    text-transform: uppercase;
+    font-family: var(--chicago);
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+  .lcd-screen {
+    background: #B5AC6F;
+    border: 1px solid #6b5c3a;
+    border-radius: 3px;
+    padding: 6px 10px 4px;
+  }
+  .lcd-mini {
+    display: flex;
+    justify-content: space-between;
+    font-family: "VT323", monospace;
+    font-size: 13px;
+    line-height: 1;
+    color: #1C1C1C;
+    margin-bottom: 2px;
+  }
+  .lcd-time {
+    font-family: "VT323", monospace;
+    font-size: 44px;
+    letter-spacing: 2px;
+    line-height: 1;
+    text-align: center;
+    color: #111;
+    padding: 2px 0 0;
+  }
+  .lcd-time .sep { opacity: 0.55; padding: 0 2px; }
+  .lcd-units {
+    display: flex;
+    justify-content: space-around;
+    font-family: var(--chicago);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: #3a3320;
+    padding-top: 4px;
+  }
+  .lcd-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--chicago);
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    color: #3a3320;
+    margin-top: 6px;
+  }
+  .lcd-wr {
+    border: 1px solid #3a3320;
+    padding: 1px 6px;
+    border-radius: 8px;
+    font-size: 10px;
+  }
+
   /* ===== Paint Window (Hero centerpiece) ===== */
   .paint-stage {
     display: flex;
@@ -742,6 +865,38 @@
             <a class="btn" href="#signup">Sign up →</a>
             <a class="btn secondary" href="#about">Learn more</a>
           </div>
+
+          <div class="watch" role="timer" aria-label="Countdown to Hackathon '26">
+            <div class="watch-btn watch-btn-tl"></div>
+            <div class="watch-btn watch-btn-tr"></div>
+            <div class="watch-btn watch-btn-bl"></div>
+            <div class="watch-btn watch-btn-br"></div>
+            <div class="watch-lcd">
+              <div class="lcd-top">
+                <span class="lcd-light">— LIGHT</span>
+                <span class="lcd-model">F-91W</span>
+                <span class="lcd-chrono">ALARM CHRONOGRAPH</span>
+              </div>
+              <div class="lcd-screen">
+                <div class="lcd-mini">
+                  <span class="lcd-24h">24H</span>
+                  <span class="lcd-mode-top" id="cdMode">CD</span>
+                </div>
+                <div class="lcd-time">
+                  <span id="cdDays">000</span><span class="sep">:</span><span id="cdHours">00</span><span class="sep">:</span><span id="cdMins">00</span><span class="sep">:</span><span id="cdSecs">00</span>
+                </div>
+                <div class="lcd-units">
+                  <span>DAYS</span><span>HRS</span><span>MIN</span><span>SEC</span>
+                </div>
+              </div>
+              <div class="lcd-bottom">
+                <span>— MODE</span>
+                <span class="lcd-water">WATER</span>
+                <span class="lcd-wr">WR</span>
+                <span class="lcd-resist">RESIST</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="hero-paint">
@@ -1209,6 +1364,29 @@
   }
   wireForm('pitchForm', 'pitchSuccess');
   wireForm('teammateForm', 'teammateSuccess');
+
+  const cdTarget = new Date('2026-09-16T09:00:00+02:00').getTime();
+  const cdDays = document.getElementById('cdDays');
+  const cdHours = document.getElementById('cdHours');
+  const cdMins = document.getElementById('cdMins');
+  const cdSecs = document.getElementById('cdSecs');
+  function tickCountdown() {
+    let diff = cdTarget - Date.now();
+    if (diff <= 0) {
+      cdDays.textContent = '000';
+      cdHours.textContent = cdMins.textContent = cdSecs.textContent = '00';
+      return;
+    }
+    const d = Math.floor(diff / 86400000); diff -= d * 86400000;
+    const h = Math.floor(diff / 3600000);  diff -= h * 3600000;
+    const m = Math.floor(diff / 60000);    diff -= m * 60000;
+    const s = Math.floor(diff / 1000);
+    cdDays.textContent = String(d).padStart(3, '0');
+    cdHours.textContent = String(h).padStart(2, '0');
+    cdMins.textContent = String(m).padStart(2, '0');
+    cdSecs.textContent = String(s).padStart(2, '0');
+  }
+  if (cdDays) { tickCountdown(); setInterval(tickCountdown, 1000); }
 
   const navToggle = document.getElementById('navToggle');
   const nav = document.getElementById('nav');
