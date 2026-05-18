@@ -489,28 +489,6 @@
     grid-template-columns: 1fr 2fr;
     gap: 64px;
   }
-  .about-heading {
-    position: relative;
-    min-height: 520px;
-  }
-  .about-heading::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 380px;
-    background-image: url("assets/camera.png");
-    background-repeat: no-repeat;
-    background-position: left bottom;
-    background-size: contain;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .about-heading h2 {
-    position: relative;
-    z-index: 1;
-  }
   .about h2 {
     font-family: var(--chicago);
     font-size: 36px;
@@ -529,6 +507,206 @@
     float: left;
     line-height: 0.9;
     padding: 4px 8px 0 0;
+  }
+
+  /* ===== Valley (e-conomic origin) ===== */
+  .valley {
+    padding: 96px 0;
+    border-top: 2px solid var(--ink);
+    background: var(--bg);
+  }
+  .valley h2 {
+    font-family: var(--chicago);
+    font-size: 36px;
+    font-weight: 400;
+    margin: 0;
+    line-height: 1;
+  }
+  .valley-eyebrow {
+    font-family: var(--chicago);
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    display: inline-block;
+    border: 2px solid var(--ink);
+    padding: 3px 8px;
+    background: var(--beige);
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
+  }
+  .valley-heading {
+    position: relative;
+    min-height: 520px;
+  }
+  .valley-heading::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 420px;
+    background-image: url("assets/camera.png");
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: contain;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .valley-heading h2 {
+    position: relative;
+    z-index: 1;
+  }
+  .valley-body p {
+    font-size: 18px;
+    line-height: 1.7;
+  }
+  .valley-body p.valley-lift {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.4;
+    padding-left: 16px;
+    border-left: 3px solid var(--orange);
+    margin: 14px 0 26px;
+  }
+
+  /* ===== Mission (Another threshold) ===== */
+  .mission {
+    padding: 96px 0;
+    border-top: 2px solid var(--ink);
+    background: var(--bg);
+  }
+  .mission-head { margin-bottom: 48px; max-width: 720px; }
+  .mission-eyebrow {
+    font-family: var(--chicago);
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    display: inline-block;
+    border: 2px solid var(--ink);
+    padding: 3px 8px;
+    background: var(--orange);
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .mission h2 {
+    font-family: var(--chicago);
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 400;
+    margin: 0;
+    line-height: 1;
+  }
+  .mission-body {
+    column-count: 2;
+    column-gap: 64px;
+  }
+  .mission-body p {
+    margin: 0 0 20px;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink);
+    break-inside: avoid;
+  }
+  .mission-body p.lift {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.35;
+    margin: 14px 0 26px;
+    padding-left: 16px;
+    border-left: 3px solid var(--orange);
+  }
+  .mission-body p strong { font-weight: 700; }
+  @media (max-width: 720px) {
+    .mission { padding: 56px 0; }
+    .mission-body { column-count: 1; }
+    .mission h2 { font-size: 32px; }
+  }
+
+  /* ===== Prompt (closing question) ===== */
+  .prompt {
+    padding: 120px 0;
+    border-top: 2px solid var(--ink);
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .prompt-inner {
+    text-align: center;
+    max-width: 880px;
+  }
+  .prompt-doodles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 28px;
+  }
+  .prompt-doodles-bottom { margin: 48px 0 0; }
+  .prompt-doodles svg {
+    width: 44px;
+    height: 44px;
+    display: block;
+  }
+  .prompt-doodles svg:nth-child(odd) { transform: rotate(-8deg); }
+  .prompt-doodles svg:nth-child(even) { transform: rotate(10deg); }
+  @media (max-width: 720px) {
+    .prompt-doodles { gap: 16px; }
+    .prompt-doodles svg { width: 32px; height: 32px; }
+  }
+  .prompt-eyebrow {
+    font-family: var(--chicago);
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    display: inline-block;
+    border: 2px solid var(--bg);
+    padding: 4px 10px;
+    background: var(--orange);
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .prompt-q {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: clamp(32px, 4.4vw, 56px);
+    line-height: 1.15;
+    margin: 0 0 40px;
+    letter-spacing: -0.5px;
+  }
+  .prompt-line {
+    display: block;
+    margin: 0 0 8px;
+  }
+  .prompt-line:last-child { margin-bottom: 0; }
+  .prompt-q em {
+    font-style: normal;
+    background: linear-gradient(180deg, transparent 62%, var(--orange) 62%);
+    padding: 0 6px;
+    color: var(--bg);
+  }
+  .prompt-cta {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .prompt .btn {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: var(--ink);
+    box-shadow: 4px 4px 0 var(--bg);
+  }
+  .prompt .btn:hover { box-shadow: 2px 2px 0 var(--bg); }
+  .prompt .btn.secondary {
+    background: var(--ink);
+    border-color: var(--bg);
+    color: var(--bg);
+    box-shadow: 4px 4px 0 var(--bg);
+  }
+  @media (max-width: 720px) {
+    .prompt { padding: 72px 0; }
+    .prompt-cta .btn { flex: 1; text-align: center; }
   }
 
   /* ===== Schedule ===== */
@@ -898,7 +1076,7 @@
       </a>
       <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">☰</button>
       <nav class="nav" id="nav">
-        <a href="#about">About</a>
+        <a href="#story">About</a>
         <a href="#schedule">Schedule</a>
         <a href="#signup">Sign up</a>
         <a href="#qa">Q&amp;A</a>
@@ -912,10 +1090,10 @@
         <div class="hero-text">
           <span class="eyebrow">★ Hackathon '26 · 25 years of e-conomic</span>
           <h1 class="headline">Back to the<br><em>garage.</em></h1>
-          <p class="lede">Silicon Valley has the garage. Ours was an old merchant's building in Christianshavn — Wildersgade 51, where a handful of people started this company 25 years ago. Same energy. New superpowers. <strong>0 → 100 in 24 hours.</strong></p>
+          <p class="lede">Silicon Valley has the garage. Ours was an old merchant's building in Christianshavn — Wildersgade 51, where a handful of people started this company 25 years ago.<br><br>This hackathon is about returning to that energy. Small supportive teams. New ideas. New AI superpowers.<br><br><strong>0 → 100 in 24 hours.</strong></p>
           <div class="cta-row">
             <a class="btn" href="#signup">Sign up →</a>
-            <a class="btn secondary" href="#about">Learn more</a>
+            <a class="btn secondary" href="#story">Learn more</a>
           </div>
 
         </div>
@@ -924,7 +1102,7 @@
         <div class="paint-stage">
           <div class="paint-window">
             <div class="paint-titlebar">
-              <span>Paintbrush — untitled.bmp</span>
+              <span>Paint — hackathon26.bmp</span>
               <div class="dots"><span></span><span></span><span></span></div>
             </div>
             <div class="paint-menubar">
@@ -1032,24 +1210,63 @@
       <p class="countdown-caption">T-minus to garage doors open · 16 September 2026 · 09:00 CEST</p>
     </section>
 
-    <section class="about" id="about">
+    <section class="valley" id="story">
       <div class="container about-grid">
-        <div class="about-heading">
-          <h2>Our<br>garage.</h2>
+        <div class="valley-heading">
+          <span class="valley-eyebrow">★ 2001 · Christianshavn</span>
+          <h2>Our<br>Story.</h2>
         </div>
-        <div class="about-body">
+        <div class="about-body valley-body">
           <p>Silicon Valley has the garage. Ours was an old merchant's building in Christianshavn.</p>
-          <p>Wildersgade 51, Christianshavn. Jacob — our founder — and a handful of people who believed. Before there were employees, before there were 250,000 customers, before there was a plan beyond the idea itself. They wanted to change accounting in Denmark. That was enough to start.</p>
-          <p>The first thing they shipped was a Balance Total report — written by one developer who just wanted to begin somewhere safe, somewhere that only reads data. Simple, careful, solid. Twenty-five years later, it's still running.</p>
-          <p>"Back to the Garage" isn't nostalgia, and it isn't mythology borrowed from California. It's a reminder that everything we've built started with a small group of people in a room, asking each other a single question: <em>how far can we get?</em></p>
-          <p>We've been here before. Paper to cloud was a pivot moment. Manual processes to agents — with <strong>.ai</strong> — is another one. Same threshold, different tools.</p>
-          <p>And the tools you have now? The four people in that cellar couldn't have imagined them. There was no playbook for what they were doing. No startup ecosystem, no accelerator, no template for "disrupting accounting." Just the problem, the people, and the work.</p>
-          <p>That kind of energy — unglamorous, ungoverned, a little bit mad — is exactly what a hackathon runs on. You don't need a roadmap. You don't need to know how to code. You need a room, an idea, and someone who says yes. We'll make sure the right people are around you. You'll learn something new. You'll build something with a colleague you've never worked with before. That's the whole point.</p>
-          <p>The question hasn't changed.</p>
-          <p><strong>What idea do you have, and how far can you get in 24 hours?</strong></p>
+          <p>Wildersgade 51. A basement room. Jacob — our founder — and a handful of people who believed they could change accounting in Denmark.</p>
+          <p>Before employees. Before 250,000 customers. Before roadmaps, strategy decks, or a category called AI or Automation.</p>
+          <p class="valley-lift">Just the problem. A small group of people. And the idea.</p>
+          <p>The first thing they shipped was a Balance Total report. One developer built it as a safe starting point — something simple, careful, solid. It only read data.</p>
+          <p><strong>Twenty-five years later, it's still running.</strong></p>
+          <p>That's where e-conomic started. Not with certainty or scale. But with curiosity, momentum, and people willing to build before they had all the answers.</p>
         </div>
       </div>
     </section>
+
+    <section class="mission" id="mission">
+      <div class="container">
+        <div class="mission-head">
+          <span class="mission-eyebrow">★ This year's mission</span>
+          <h2>Back to the<br>Garage.</h2>
+        </div>
+        <div class="mission-body">
+          <p>"Back to the Garage" isn't nostalgia, and it isn't mythology borrowed from California. It's a reminder that this company was built in small rooms, by small teams, doing things that did not exist yet. And now we're standing at another shift.</p>
+          <p class="lift">Paper to cloud changed everything. And we will do it again.</p>
+          <p>The tools we have today would have felt like a dream in that basement on Wildersgade. But the mindset is the same:</p>
+          <p class="lift">An idea.<br>A room.<br>People willing to try.</p>
+          <p>That's what this hackathon is about.</p>
+          <p class="lift">Not perfection.<br>Not polished pitches.<br>Not knowing everything before you start.</p>
+          <p>It's about the joy of building cool stuff. Experimenting. Learning across teams with people you've never worked with before.</p>
+          <p>Designers. Engineers. PMs. Support. Sales. Analysts — and everyone in between. One room for 24 hours.</p>
+          <p class="lift">Some ideas will fail.<br>Some will bite off more than they can chew.<br>A few might change how we work.</p>
+          <p>That's usually how new chapters begin.</p>
+          <p>You don't need to know how to code. You just need curiosity — and the courage to try.</p>
+          <p>Twenty-five years ago, a few people in Christianshavn started something with no blueprint for what came next.</p>
+          <p><strong>Now it's our turn.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="prompt" id="prompt">
+      <div class="container prompt-inner">
+        <span class="prompt-eyebrow">★ The question</span>
+        <h2 class="prompt-q">
+          <span class="prompt-line">What idea do you have?</span>
+          <span class="prompt-line">And how far can you get in <em>24 hours?</em></span>
+        </h2>
+        <div class="prompt-cta">
+          <a class="btn" href="#signup">Sign up →</a>
+          <a class="btn secondary" href="#schedule">See the shape</a>
+        </div>
+
+      </div>
+    </section>
+
     <section class="schedule" id="schedule">
       <div class="container">
         <div class="schedule-head">
@@ -1190,7 +1407,7 @@
             <div class="answer">Please do — we are amplified by AI. Something our friends in the 1980s would have loved to have. Go nuts, experiment, try something new, push the boundaries. This is an amazing playground to create, experiment, and test. Don't hold back.</div>
           </details>
           <details class="qa-item">
-            <summary>What if I'm not a developer? <span class="plus"></span></summary>
+            <summary>What can we build? <span class="plus"></span></summary>
             <div class="answer">Everyone has a good idea. A project can be many things — an AI workflow for your team, a new feature for a customer, a rethink of an existing page, embedded AI functionality. Maybe this is finally the year someone vibe codes a brand new design and layout. How many years have we been trying to make that happen at hackathon?</div>
           </details>
           <details class="qa-item">
