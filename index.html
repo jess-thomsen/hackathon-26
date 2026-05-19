@@ -215,15 +215,18 @@
   .watch-band::after {
     content: "";
     flex: 1;
-    height: 96px;
+    height: 72px;
     align-self: center;
     background:
       repeating-linear-gradient(90deg,
-        #F4B81E 0 26px,
-        #C58A0D 26px 30px);
+        #1C1C1C 0 24px,
+        #2a2a2a 24px 26px,
+        #1C1C1C 26px 52px,
+        #DFCCC2 52px 56px,
+        #1C1C1C 56px 58px);
     border-top: 2px solid var(--ink);
     border-bottom: 2px solid var(--ink);
-    box-shadow: inset 0 8px 0 rgba(255,255,255,0.18), inset 0 -10px 0 rgba(0,0,0,0.15);
+    box-shadow: inset 0 8px 0 rgba(255,255,255,0.06), inset 0 -10px 0 rgba(0,0,0,0.35);
   }
   .countdown-caption {
     text-align: center;
@@ -237,16 +240,16 @@
   .watch {
     position: relative;
     flex: 0 0 auto;
-    max-width: 520px;
+    max-width: 340px;
     width: 100%;
-    background: #F4B81E;
+    background: #1C1C1C;
     background-image:
-      linear-gradient(180deg, rgba(255,255,255,0.22), rgba(0,0,0,0) 30%),
-      linear-gradient(180deg, rgba(0,0,0,0) 65%, rgba(0,0,0,0.18));
+      linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0) 30%),
+      linear-gradient(180deg, rgba(0,0,0,0) 65%, rgba(0,0,0,0.5));
     border: 2px solid var(--ink);
-    border-radius: 28px;
-    padding: 26px 30px 30px;
-    box-shadow: 8px 8px 0 var(--ink);
+    border-radius: 20px;
+    padding: 18px 20px 22px;
+    box-shadow: 6px 6px 0 var(--ink);
     z-index: 1;
   }
   .watch-btn {
@@ -263,10 +266,10 @@
   .watch-btn-br { right: -10px; bottom: 22px; }
 
   .watch-lcd {
-    background: #C7BE82;
+    background: #DFCCC2;
     background-image:
-      linear-gradient(180deg, #BDB375 0%, #D6CC92 40%, #C7BE82 100%);
-    border: 2px solid #6b5c3a;
+      linear-gradient(180deg, #E8D7CC 0%, #DFCCC2 40%, #D2BCB0 100%);
+    border: 2px solid #1C1C1C;
     border-radius: 6px;
     padding: 8px 12px 6px;
     color: #1C1C1C;
@@ -279,7 +282,7 @@
     font-size: 10px;
     letter-spacing: 0.5px;
     line-height: 1;
-    color: #3a3320;
+    color: #1C1C1C;
     margin-bottom: 4px;
   }
   .lcd-model {
@@ -287,16 +290,18 @@
     font-family: var(--chicago);
     font-size: 11px;
     letter-spacing: 1px;
+    color: #1C1C1C;
   }
   .lcd-chrono {
     text-transform: uppercase;
     font-family: var(--chicago);
     font-size: 10px;
     letter-spacing: 1px;
+    color: #1C1C1C;
   }
   .lcd-screen {
-    background: #B5AC6F;
-    border: 1px solid #6b5c3a;
+    background: #FAF4F0;
+    border: 1px solid #1C1C1C;
     border-radius: 3px;
     padding: 6px 10px 4px;
   }
@@ -311,11 +316,11 @@
   }
   .lcd-time {
     font-family: "VT323", monospace;
-    font-size: 64px;
-    letter-spacing: 3px;
+    font-size: 46px;
+    letter-spacing: 2px;
     line-height: 1;
     text-align: center;
-    color: #111;
+    color: #1C1C1C;
     padding: 4px 0 2px;
   }
   .lcd-time .sep { opacity: 0.55; padding: 0 2px; }
@@ -325,7 +330,7 @@
     font-family: var(--chicago);
     font-size: 9px;
     letter-spacing: 1.5px;
-    color: #3a3320;
+    color: #1C1C1C;
     padding-top: 4px;
   }
   .lcd-bottom {
@@ -335,11 +340,12 @@
     font-family: var(--chicago);
     font-size: 10px;
     letter-spacing: 0.5px;
-    color: #3a3320;
+    color: #1C1C1C;
     margin-top: 6px;
   }
   .lcd-wr {
-    border: 1px solid #3a3320;
+    border: 1px solid #1C1C1C;
+    color: #1C1C1C;
     padding: 1px 6px;
     border-radius: 8px;
     font-size: 10px;
@@ -777,7 +783,7 @@
     border: 2px solid var(--ink);
   }
   .event.highlight::before { background: var(--orange); }
-  .event.warn::before { background: var(--red); }
+  .event.warn::before { background: var(--orange); }
   .event .time {
     font-family: var(--chicago);
     font-size: 14px;
@@ -787,7 +793,7 @@
     display: inline-block;
     margin-bottom: 6px;
   }
-  .event.warn .time { background: var(--red); color: #fff; border-color: var(--red); }
+  .event.warn .time { background: var(--orange); color: var(--ink); border-color: var(--ink); }
   .event h4 {
     font-family: var(--chicago);
     font-size: 18px;
