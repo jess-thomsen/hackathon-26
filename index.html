@@ -1004,6 +1004,256 @@
   }
   details.qa-item:hover summary { background: rgba(0,0,0,0.02); }
 
+  /* ===== Arcade (Bonus level) ===== */
+  .arcade {
+    padding: 96px 0 120px;
+    border-top: 2px solid var(--ink);
+    background: var(--bg);
+    text-align: center;
+  }
+  .arcade-eyebrow {
+    font-family: var(--chicago);
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    display: inline-block;
+    border: 2px solid var(--ink);
+    padding: 3px 10px;
+    background: var(--orange);
+    margin-bottom: 18px;
+  }
+  .arcade-title {
+    font-family: var(--chicago);
+    font-size: clamp(36px, 4.5vw, 56px);
+    font-weight: 400;
+    margin: 0 0 10px;
+    line-height: 1;
+  }
+  .arcade-lede {
+    margin: 0 auto 48px;
+    max-width: 540px;
+    color: var(--ink-soft);
+    font-size: 17px;
+  }
+  .gameboy {
+    margin: 0 auto;
+    max-width: 360px;
+    background: #1C1C1C;
+    border: 2px solid var(--ink);
+    border-radius: 20px 20px 56px 20px;
+    padding: 22px 22px 28px;
+    box-shadow: 8px 8px 0 var(--ink), inset 0 2px 0 rgba(255,255,255,0.06);
+    text-align: left;
+  }
+  .gameboy-bezel {
+    background: #DFCCC2;
+    border: 1.5px solid #1C1C1C;
+    border-radius: 8px 8px 24px 8px;
+    padding: 18px 14px 22px;
+    position: relative;
+  }
+  .gameboy-bezel::before,
+  .gameboy-bezel::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: #CE3F42;
+    border-radius: 50%;
+    position: absolute;
+    top: -2px;
+  }
+  .gameboy-bezel::before { left: 10px; background: #08AE87; }
+  .gameboy-bezel::after { right: 10px; background: #FFBD3B; }
+  .gameboy-screen {
+    background: #9BAA61;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.06) 0 1px, transparent 1px 3px);
+    border: 2px solid #1C1C1C;
+    border-radius: 4px;
+    padding: 18px 12px;
+    font-family: "VT323", ui-monospace, monospace;
+    color: #1C1C1C;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .gameboy-screen .row {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+  }
+  .gameboy-screen .title {
+    font-size: 28px;
+    font-family: var(--chicago);
+    letter-spacing: 2px;
+    margin: 8px 0;
+  }
+  .gameboy-screen .blink {
+    margin-top: 14px;
+    animation: gb-blink 1.1s steps(2, end) infinite;
+  }
+  @keyframes gb-blink { 50% { opacity: 0; } }
+  .gameboy-brand {
+    color: #DFCCC2;
+    font-family: var(--chicago);
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-align: right;
+    margin: 8px 6px 18px;
+    text-transform: uppercase;
+  }
+  .gameboy-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 6px 4px 18px;
+  }
+  .gameboy-dpad {
+    position: relative;
+    width: 64px;
+    height: 64px;
+  }
+  .gameboy-dpad::before,
+  .gameboy-dpad::after {
+    content: "";
+    position: absolute;
+    background: #2a2a2a;
+    border: 1.5px solid #000;
+  }
+  .gameboy-dpad::before {
+    left: 22px;
+    top: 4px;
+    width: 20px;
+    height: 56px;
+    border-radius: 3px;
+  }
+  .gameboy-dpad::after {
+    left: 4px;
+    top: 22px;
+    width: 56px;
+    height: 20px;
+    border-radius: 3px;
+  }
+  .gameboy-ab {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .ab-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #6542D1;
+    border: 1.5px solid #000;
+    color: #fff;
+    font-family: var(--chicago);
+    font-size: 16px;
+    line-height: 36px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: inset 0 -2px 0 rgba(0,0,0,0.25);
+    cursor: pointer;
+    transform: rotate(-18deg);
+  }
+  .ab-btn.b { background: #CF49AA; }
+  .ab-btn:hover { filter: brightness(1.12); }
+  .gameboy-startsel {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin: 4px 0 18px;
+  }
+  .gameboy-pill {
+    background: #555;
+    border: 1.5px solid #000;
+    border-radius: 12px;
+    width: 38px;
+    height: 10px;
+    transform: rotate(-22deg);
+  }
+  .gameboy-start {
+    display: block;
+    margin: 4px auto 0;
+    font-family: var(--chicago);
+    font-size: 16px;
+    text-align: center;
+    background: var(--orange);
+    border: 2px solid #000;
+    color: #1C1C1C;
+    padding: 12px 18px;
+    text-decoration: none;
+    border-radius: 6px;
+    box-shadow: 4px 4px 0 #000;
+    letter-spacing: 1px;
+  }
+  .gameboy-start:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #000; }
+  @media (max-width: 720px) {
+    .arcade { padding: 56px 0 72px; }
+    .gameboy { max-width: 300px; }
+  }
+
+  /* ===== Game modal ===== */
+  .game-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .game-modal.open { display: flex; }
+  .game-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(2px);
+  }
+  .game-modal-card {
+    position: relative;
+    background: var(--bg);
+    border: 2px solid var(--ink);
+    box-shadow: 12px 12px 0 var(--ink);
+    width: min(960px, 100%);
+    max-height: calc(100vh - 48px);
+    display: flex;
+    flex-direction: column;
+  }
+  .game-modal-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 8px 12px;
+    font-family: var(--chicago);
+    font-size: 14px;
+  }
+  .game-modal-close {
+    background: var(--bg);
+    border: 2px solid var(--bg);
+    color: var(--ink);
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--chicago);
+    font-size: 18px;
+    line-height: 1;
+    padding: 0;
+  }
+  .game-modal-close:hover { background: var(--orange); }
+  .game-modal-frame {
+    background: #000;
+    flex: 1;
+    min-height: 0;
+  }
+  .game-modal-frame iframe {
+    width: 100%;
+    height: 70vh;
+    border: 0;
+    display: block;
+  }
+  body.no-scroll { overflow: hidden; }
+
   /* ===== Footer ===== */
   footer {
     border-top: 2px solid var(--ink);
@@ -1376,7 +1626,7 @@
           <div class="form-card alt">
             <span class="tag">◆ Join a team</span>
             <h3>I'll bring the superpowers.</h3>
-            <p class="desc">No idea required. Tell us what you're good at and what excites you. We'll match you to a team at kickoff.</p>
+            <p class="desc">I want to join to build something cool with some lovely people. Tell us what excites you and how you're planning to join.</p>
             <a class="btn" href="https://forms.google.com/REPLACE_WITH_TEAMMATE_FORM_URL" target="_blank" rel="noopener">Join the pool →</a>
           </div>
         </div>
@@ -1438,7 +1688,54 @@
         </div>
       </div>
     </section>
+
+    <section class="arcade" id="arcade">
+      <div class="container">
+        <span class="arcade-eyebrow">★ Hackathon bonus</span>
+        <h2 class="arcade-title">Bonus level.</h2>
+        <p class="arcade-lede">A little game we made for the hackathon. Press start, take a break, see how far you get.</p>
+
+        <div class="gameboy">
+          <div class="gameboy-bezel">
+            <div class="gameboy-screen">
+              <div class="row">★ HACKATHON ★</div>
+              <div class="title">HACK<br>IDEAS!</div>
+              <div class="row blink">PRESS START</div>
+            </div>
+          </div>
+          <div class="gameboy-brand">e-conomic · '26</div>
+
+          <div class="gameboy-controls">
+            <div class="gameboy-dpad" aria-hidden="true"></div>
+            <div class="gameboy-ab">
+              <span class="ab-btn b">B</span>
+              <span class="ab-btn">A</span>
+            </div>
+          </div>
+
+          <div class="gameboy-startsel" aria-hidden="true">
+            <span class="gameboy-pill"></span>
+            <span class="gameboy-pill"></span>
+          </div>
+
+          <button class="gameboy-start" type="button" data-game-open>▶ Press Start</button>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <div class="game-modal" id="gameModal" aria-hidden="true" role="dialog" aria-label="Wook's Corner">
+    <div class="game-modal-backdrop" data-game-close></div>
+    <div class="game-modal-card">
+      <div class="game-modal-bar">
+        <span class="game-modal-title">Hack Ideas! — Hackathon '26</span>
+        <button class="game-modal-close" type="button" aria-label="Close game" data-game-close>×</button>
+      </div>
+      <div class="game-modal-frame">
+        <iframe id="gameFrame" title="Wook's Corner" loading="lazy" allow="autoplay"></iframe>
+      </div>
+    </div>
+  </div>
 
   <footer>
     <div class="container" style="display:flex; justify-content:space-between; width:100%;">
@@ -1687,6 +1984,41 @@
     cdSecs.textContent = String(s).padStart(2, '0');
   }
   if (cdDays) { tickCountdown(); setInterval(tickCountdown, 1000); }
+
+  const gameModal = document.getElementById('gameModal');
+  const gameFrame = document.getElementById('gameFrame');
+  if (gameModal && gameFrame) {
+    const openers = document.querySelectorAll('[data-game-open]');
+    const closers = gameModal.querySelectorAll('[data-game-close]');
+    const focusGame = () => {
+      try {
+        gameFrame.focus();
+        if (gameFrame.contentWindow) gameFrame.contentWindow.focus();
+      } catch (e) { /* cross-origin or detached */ }
+    };
+    const openGame = () => {
+      if (!gameFrame.src) {
+        gameFrame.src = 'game.html';
+        gameFrame.addEventListener('load', focusGame, { once: true });
+      }
+      gameModal.classList.add('open');
+      gameModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('no-scroll');
+      // Focus the iframe so keydown events reach the game
+      requestAnimationFrame(focusGame);
+      setTimeout(focusGame, 120);
+    };
+    const closeGame = () => {
+      gameModal.classList.remove('open');
+      gameModal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('no-scroll');
+    };
+    openers.forEach(el => el.addEventListener('click', openGame));
+    closers.forEach(el => el.addEventListener('click', closeGame));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && gameModal.classList.contains('open')) closeGame();
+    });
+  }
 
   const navToggle = document.getElementById('navToggle');
   const nav = document.getElementById('nav');
