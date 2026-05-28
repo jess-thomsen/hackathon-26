@@ -743,6 +743,73 @@
     grid-template-columns: 1fr 1fr;
     gap: 48px;
   }
+  .days-simple { gap: 32px; }
+  .day-card {
+    border: 2px solid var(--ink);
+    background: #fff;
+    padding: 28px 32px;
+    box-shadow: 8px 8px 0 var(--ink);
+  }
+  .day-card h3 {
+    font-family: var(--chicago);
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0 0 8px;
+    line-height: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .day-card h3 .day-num {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 4px 10px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+  }
+  .day-card .day-sub {
+    margin: 0 0 20px;
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+  .day-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .day-list li {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 16px;
+    align-items: baseline;
+    padding: 12px 0;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    font-size: 17px;
+  }
+  .day-list li:first-child { border-top: 0; padding-top: 4px; }
+  .day-list li time {
+    font-family: var(--chicago);
+    font-size: 15px;
+    background: var(--beige);
+    border: 1px solid var(--ink);
+    padding: 2px 8px;
+    line-height: 1.4;
+    text-align: center;
+    justify-self: start;
+  }
+  .day-list li.warn time {
+    background: var(--orange);
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+  .day-list li strong { font-weight: 700; }
+  .schedule-foot {
+    margin: 40px auto 0;
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 15px;
+    max-width: 540px;
+  }
   .day h3 {
     font-family: var(--chicago);
     font-size: 28px;
@@ -1530,83 +1597,32 @@
       <div class="container">
         <div class="schedule-head">
           <h2>24 hours.<br>Here's the shape.</h2>
-          <p>Pitches in the morning, building through the night, demos on the stage. Same garage energy — every team picks a 30-second anthem that plays before they take the stage.</p>
+          <p>You pitch before lunch. You build until you can't. You pick a song that says something about who you were for those hours. Then you walk up and show what you made.</p>
         </div>
-        <div class="days">
-          <div class="day">
+        <div class="days days-simple">
+          <div class="day-card">
             <h3><span class="day-num">DAY 1</span> Pitch &amp; build</h3>
             <p class="day-sub">Ideas land, teams form, the work begins.</p>
-            <div class="timeline">
-              <div class="event highlight">
-                <span class="time">09:00 – 10:00</span>
-                <h4>Opening &amp; pitches</h4>
-                <p>Everyone in the room. Pitchers present their ideas with a number and an image. Joiners listen and pick a team.</p>
-              </div>
-              <div class="event">
-                <span class="time">10:00 – 10:30</span>
-                <h4>Team formation</h4>
-                <p>Teams settle in and fill out the experiment card together — what are you trying to solve, the idea, how you'll test it, what success looks like.</p>
-              </div>
-              <div class="event warn">
-                <span class="time">⏰ 12:00 deadline</span>
-                <h4>Experiment cards in</h4>
-                <p>Every team submits their experiment card to the organisers before hacking starts.</p>
-              </div>
-              <div class="event">
-                <span class="time">12:00 – 17:30</span>
-                <h4>Hack time</h4>
-                <p>Lunch together. Snacks throughout. Organisers float between teams for check-ins. Build, design, research, code.</p>
-              </div>
-              <div class="event highlight">
-                <span class="time">17:30</span>
-                <h4>Fun break</h4>
-                <p>Thirty minutes, everyone together. A group activity to recharge and cross-pollinate between teams.</p>
-              </div>
-              <div class="event">
-                <span class="time">18:00</span>
-                <h4>Dinner</h4>
-                <p>Catered. Casual. Team bonding over food. Some folks head home after — no pressure.</p>
-              </div>
-              <div class="event">
-                <span class="time">After dinner – 24:00</span>
-                <h4>Late night hack ☕ (optional)</h4>
-                <p>Totally optional — but if you catch the building bug, the workspace stays open until midnight. Snacks, coffee, and quiet focus for anyone who wants to push the final stretch.</p>
-              </div>
-            </div>
+            <ul class="day-list">
+              <li><time>09:00</time><span>Opening &amp; pitches</span></li>
+              <li><time>10:00</time><span>Team formation</span></li>
+              <li class="warn"><time>10:30</time><span><strong>Team kick off and building</strong></span></li>
+              <li><time>18:00</time><span>Hack time, dinner, optional late night</span></li>
+            </ul>
           </div>
 
-          <div class="day">
+          <div class="day-card">
             <h3><span class="day-num">DAY 2</span> Ship &amp; show</h3>
             <p class="day-sub">Wrap the build, lock the deck, take the stage.</p>
-            <div class="timeline">
-              <div class="event">
-                <span class="time">08:30</span>
-                <h4>Arrival &amp; breakfast</h4>
-                <p>Come in late if you stayed late — no judgement. Breakfast on the table, reconnect with the team, review where you left off.</p>
-              </div>
-              <div class="event warn">
-                <span class="time">⏰ 11:00 deadline</span>
-                <h4>Deliver your code</h4>
-                <p>Code and prototype submitted. Final bug fixes and cleanup land before this point.</p>
-              </div>
-              <div class="event warn">
-                <span class="time">⏰ 14:00 deadline</span>
-                <h4>Presentations locked</h4>
-                <p>Final decks and demos delivered to the common platform. No editing after this — what you submit is what you present.</p>
-              </div>
-              <div class="event">
-                <span class="time">12:00 – 15:00</span>
-                <h4>Free time &amp; lunch</h4>
-                <p>Breathe. The hard part is done. Eat together, practice your pitch if you want, get hyped for the afternoon.</p>
-              </div>
-              <div class="event highlight">
-                <span class="time">15:15 – 17:30</span>
-                <h4>Final presentations 🎤</h4>
-                <p>Sharp start at 15:15. Every team takes the stage, demos their work, answers questions. We watch, we cheer, we vote, we celebrate.</p>
-              </div>
-            </div>
+            <ul class="day-list">
+              <li><time>08:30</time><span>Breakfast &amp; reconnect</span></li>
+              <li class="warn"><time>11:00</time><span><strong>Deliver your code</strong></span></li>
+              <li class="warn"><time>14:00</time><span><strong>Presentations locked</strong></span></li>
+              <li><time>15:15</time><span>Final presentations 🎤</span></li>
+            </ul>
           </div>
         </div>
+        <p class="schedule-foot">More details coming soon — we're still pencilling in the in-between, and could change slightly.</p>
       </div>
     </section>
 
@@ -1628,7 +1644,7 @@
             <span class="tag">◆ Join a team</span>
             <h3>I'll bring the superpowers.</h3>
             <p class="desc">I want to join to build something cool with some lovely people. Tell us what excites you and how you're planning to join.</p>
-            <a class="btn" href="https://forms.google.com/REPLACE_WITH_TEAMMATE_FORM_URL" target="_blank" rel="noopener">Join the pool →</a>
+            <a class="btn" href="https://forms.google.com/REPLACE_WITH_TEAMMATE_FORM_URL" target="_blank" rel="noopener">I want to build →</a>
           </div>
         </div>
       </div>
@@ -1659,7 +1675,7 @@
           </details>
           <details class="qa-item">
             <summary>Are there prizes? <span class="plus"></span></summary>
-            <div class="answer">We build for the joy of creating something cool in a short amount of time. There will be juries and prizes — details announced on the day. Internal judges who genuinely can't wait to see what you come up with.</div>
+            <div class="answer">Yes, but remember we build for the joy of creating something cool in a short amount of time. There will be juries and prizes — details announced under the event. Internal judges who genuinely can't wait to see what you come up with.</div>
           </details>
           <details class="qa-item">
             <summary>Can I use AI tools? <span class="plus"></span></summary>
